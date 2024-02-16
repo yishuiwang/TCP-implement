@@ -1,3 +1,3 @@
-module github.com/kawa1214/tcp-ip-go
+module tcp
 
-go 1.20
+go 1.21.7
