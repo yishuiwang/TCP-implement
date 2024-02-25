@@ -17,7 +17,7 @@ const (
 
 type Header struct {
 	Version        uint8
-	IHL            uint8
+	IHL            uint8 // 头部长度
 	TOS            uint8
 	TotalLength    uint16 // IP 标头和负载的总长度
 	ID             uint16 // 标识
@@ -30,16 +30,16 @@ type Header struct {
 	DstIP          [4]byte
 }
 
-func NewHeader(srcIP, dstIP [4]byte) *Header {
+func NewHeader(srcIP, dstIP [4]byte, len int) *Header {
 	return &Header{
 		Version:     IP_VERSION_4,
 		IHL:         IHL,
 		TOS:         TOS,
+		TotalLength: uint16(LENGTH + len),
 		TTL:         TTL,
 		Protocol:    TCP_PROTOCOL,
 		SrcIP:       srcIP,
 		DstIP:       dstIP,
-		TotalLength: LENGTH,
 		ID:          0,
 		Flags:       0x40,
 		Checksum:    0,
